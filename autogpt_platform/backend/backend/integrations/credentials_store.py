@@ -116,6 +116,13 @@ exa_credentials = APIKeyCredentials(
     title="Use Credits for Exa search",
     expires_at=None,
 )
+perplexity_credentials = APIKeyCredentials(
+    id="543cff70-2c6f-4ae2-804e-fa63af377db3",
+    provider="perplexity",
+    api_key=SecretStr(settings.secrets.perplexity_api_key),
+    title="Use Credits for Perplexity search",
+    expires_at=None,
+)
 e2b_credentials = APIKeyCredentials(
     id="78d19fd7-4d59-4a16-8277-3ce310acf2b7",
     provider="e2b",
@@ -199,6 +206,7 @@ DEFAULT_CREDENTIALS = [
     open_router_credentials,
     fal_credentials,
     exa_credentials,
+    perplexity_credentials,
     e2b_credentials,
     mem0_credentials,
     nvidia_credentials,
@@ -266,6 +274,8 @@ class IntegrationCredentialsStore:
             all_credentials.append(fal_credentials)
         if settings.secrets.exa_api_key:
             all_credentials.append(exa_credentials)
+        if settings.secrets.perplexity_api_key:
+            all_credentials.append(perplexity_credentials)
         if settings.secrets.e2b_api_key:
             all_credentials.append(e2b_credentials)
         if settings.secrets.nvidia_api_key:
